@@ -4,8 +4,9 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 
 public interface UserConfig {
-  String USER_LOGIN = "gta255@yandex.ru";
-  String USER_PASSWORD = "Password1";
+  String USER_LOGIN = PropertiesData.getPropertyField("user.login", EnvConfig.PROPERTIES_PATH);
+  String USER_PASSWORD =
+      PropertiesData.getPropertyField("user.password", EnvConfig.PROPERTIES_PATH);
   String NEW_NAME = "Ba" + randomAlphabetic(4);
   String NEW_SURNAME = "Su" + randomAlphabetic(4);
   String NEW_EMAIL = "my_" + randomAlphabetic(6) + "@mail.ru";

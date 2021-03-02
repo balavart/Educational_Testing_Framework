@@ -9,11 +9,12 @@ import static razer.config.UserConfig.NEW_SURNAME;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 import razer.base.DriverWrapper;
-import razer.testng.AccountPage;
-import razer.testng.MainPage;
-import razer.testng.RegistrationPage;
+import razer.pages.AccountPage;
+import razer.pages.MainPage;
+import razer.pages.RegistrationPage;
 
 public class RegistrationStepDef {
 
@@ -33,56 +34,56 @@ public class RegistrationStepDef {
     wrapper.close();
   }
 
-  @Then("Open registration page")
+  @When("Open registration page")
   public void openRegistrationPage() {
     MainPage page = new MainPage(wrapper.getDriver());
     page.clickUserButton();
     page.clickCreateAccountButton();
   }
 
-  @Then("Input name")
+  @When("Input name")
   public void inputName() {
     RegistrationPage page = new RegistrationPage(wrapper.getDriver());
     page.typeInputNewName(NEW_NAME);
   }
 
-  @Then("Input surname")
+  @When("Input surname")
   public void inputSurname() {
     RegistrationPage page = new RegistrationPage(wrapper.getDriver());
     page.typeInputSurname(NEW_SURNAME);
   }
 
-  @Then("Input email")
+  @When("Input email")
   public void inputEmail() {
     RegistrationPage page = new RegistrationPage(wrapper.getDriver());
     page.typeInputEmail(NEW_EMAIL);
   }
 
-  @Then("Input phone number")
+  @When("Input phone number")
   public void inputPhoneNumber() {
     RegistrationPage page = new RegistrationPage(wrapper.getDriver());
     page.typeInputPhoneNumber(NEW_PHONE_NUMBER);
   }
 
-  @Then("Input new password")
+  @When("Input new password")
   public void inputNewPassword() {
     RegistrationPage page = new RegistrationPage(wrapper.getDriver());
     page.typeInputNewPasswordInput(NEW_PASSWORD);
   }
 
-  @Then("Input new password repeatedly")
+  @When("Input new password repeatedly")
   public void inputNewPasswordRepeatedly() {
     RegistrationPage page = new RegistrationPage(wrapper.getDriver());
     page.typeInputRepeatPassword(NEW_PASSWORD);
   }
 
-  @Then("Click ReCaptcha")
+  @When("Click ReCaptcha")
   public void clickReCaptcha() {
     RegistrationPage page = new RegistrationPage(wrapper.getDriver());
     page.clickReCaptcha();
   }
 
-  @Then("Click registration button")
+  @When("Click registration button")
   public void clickRegistrationButton() {
     RegistrationPage page = new RegistrationPage(wrapper.getDriver());
     page.clickRegistrationButton();
@@ -92,7 +93,6 @@ public class RegistrationStepDef {
   public void checkNameField() {
     AccountPage page = new AccountPage(wrapper.getDriver());
     String actual = page.getAccountUserName();
-    String expected = NEW_NAME;
-    Assert.assertEquals(actual, expected);
+    Assert.assertEquals(actual, NEW_NAME, "User failed to register");
   }
 }

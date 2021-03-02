@@ -63,3 +63,4 @@ build/
 ### Logs ###
 *.log
 /allure-results/
+/src/main/resources/config.properties
